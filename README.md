@@ -64,6 +64,6 @@ To view or modify the website locally, follow these steps:
 Feel free to reach out if you'd like to collaborate or if you have any questions.
 
 - **Name**: Aishwarya Bhargava
-- **Email**: [Your email address]
-- **LinkedIn**: [LinkedIn Profile URL](https://www.linkedin.com/in/aishwaryabhargava)
+- **Email**: [aishwarya.bhargava1198@gmail.com]
+- **LinkedIn**: [LinkedIn Profile URL](https://www.linkedin.com/in/aishwarya-bhargava05/)
 - **GitHub**: [GitHub Profile](https://github.com/AishwaryaBhargava)
