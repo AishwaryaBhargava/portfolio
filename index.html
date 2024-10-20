@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Aishwarya's Portfolio</title>
+        <!-- Font from Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;700&display=swap" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+        <style>
+            :root {
+                --primary-color: #B0B0B0; /* Light gray for accents */
+                --secondary-color: #7A7A7A; /* Darker gray */
+                --accent-color: #4B4B4B; /* Dark gray for highlights */
+                --text-color: #E5E7EB; /* Light text */
+                --bg-color: #1F1F1F; /* Dark background */
+                --section-bg: #2A2A2A; /* Darker section background */
+                --timeline-color: #3A3A3A; /* Grey for timeline */
+                --button-bg: #4A4A4A; /* Dark button background */
+            }
+
+            body {
+                background-color: var(--bg-color);
+                color: var(--text-color);
+                font-family: 'Oxanium', cursive;
+                margin: 0;
+            }
+
+            /* Header */
+            header {
+                background-color: var(--section-bg);
+                padding: 1.5rem 0; /* Increased padding */
+                position: fixed;
+                width: 100%;
+                top: 0;
+                z-index: 1000;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+            }
+
+            /* Reset any unwanted padding or margin */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            /* Base Navbar */
+            nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 1rem 1rem;
+                background-color: var(--section-bg);
+                z-index: 1000; /* Ensures it's above other elements */
+                position: relative;
+            }
+
+            nav ul {
+                display: flex;
+                list-style: none;
+                gap: 2rem;
+                transition: all 0.3s ease;
+            }
+
+            nav a {
+                color: var(--text-color);
+                text-decoration: none;
+                font-size: 1.1rem;
+                transition: color 0.3s ease;
+            }
+
+            nav a:hover {
+                color: var(--primary-color);
+            }
+
+            /* Hide the navbar items on small screens */
+            @media (max-width: 768px) {
+                nav ul {
+                    flex-direction: column;
+                    position: absolute;
+                    top: 60px; /* Adjust based on your header height */
+                    right: 0;
+                    background-color: var(--section-bg);
+                    width: 100%;
+                    height: calc(100vh - 60px); /* Full screen height minus header */
+                    justify-content: center;
+                    align-items: center;
+                    transform: translateY(-100%);
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+                }
+
+                nav ul.show {
+                    transform: translateY(0);
+                    opacity: 1;
+                    visibility: visible;
+                }
+
+                /* Hamburger Menu */
+                .hamburger {
+                    display: flex;
+                    flex-direction: column;
+                    cursor: pointer;
+                    padding: 10px;
+                }
+
+                .hamburger div {
+                    width: 25px;
+                    height: 3px;
+                    background-color: var(--text-color);
+                    margin: 4px;
+                    transition: all 0.3s ease;
+                }
+
+                /* Hamburger transform to 'X' when clicked */
+                .hamburger.toggle .bar1 {
+                    transform: rotate(-45deg) translate(-5px, 5px);
+                }
+
+                .hamburger.toggle .bar2 {
+                    opacity: 0;
+                }
+
+                .hamburger.toggle .bar3 {
+                    transform: rotate(45deg) translate(-5px, -5px);
+                }
+            }
+
+            /* Logo Handling */
+            nav img.logo {
+                max-width: 50px; /* Adjust based on your needs */
+                height: auto;
+                display: block;
+            }
+
+            /* Hero Section */
+            .hero {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 8rem 2rem 6rem; /* Padding adjusted for alignment */
+                background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+                color: var(--text-color);
+                position: relative;
+            }
+
+            .hero .hero-text {
+                max-width: 500px; /* Limit width of text */
+            }
+
+            .hero h1 {
+                font-size: 3rem; /* Adjusted font size */
+                margin-bottom: 1rem;
+            }
+
+            .hero .profile-image {
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 4px solid var(--text-color);
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
+                margin-left: 2rem; /* Added margin for spacing */
+            }
+
+            /* Section Styling */
+            section {
+                padding: 5rem 0; /* Consistent padding */
+            }
+
+            .section-title {
+                color: var(--primary-color);
+                text-align: center;
+                margin-bottom: 3rem;
+                position: relative;
+            }
+
+            .section-title:after {
+                content: '';
+                display: block;
+                width: 50px;
+                height: 3px;
+                background: var(--primary-color);
+                margin: 1rem auto;
+            }
+
+            /* About Section */
+            #about {
+                padding: 4rem 2rem; /* Added padding to About Me section */
+            }
+
+            /* Timeline */
+            .timeline {
+                position: relative;
+                max-width: 1000px;
+                margin: 0 auto;
+                padding: 0 1rem; /* Added padding */
+            }
+
+            .timeline::after {
+                content: '';
+                position: absolute;
+                width: 2px;
+                background: var(--timeline-color);
+                top: 0;
+                bottom: 0;
+                left: 50%;
+                margin-left: -1px;
+            }
+
+            .timeline-item {
+                padding: 1px 40px;
+                position: relative;
+                width: 50%;
+                box-sizing: border-box;
+                /*margin-bottom: 1rem; Added margin between items */
+                cursor: pointer; /* Change cursor to pointer */
+            }
+
+            .timeline-item:nth-child(odd) {
+                left: 0;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 50%;
+            }
+
+            .timeline-content {
+                padding: 20px;
+                background: var(--section-bg);
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
+                color: var(--text-color);
+                display: none; /* Initially hide tasks */
+            }
+
+            .timeline-date {
+                font-weight: bold;
+                color: var(--primary-color);
+                margin-bottom: 0.5rem;
+            }
+
+            /* Projects */
+            .projects-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                padding: 0 2rem;
+            }
+
+            .project-card {
+                background-color: var(--section-bg);
+                color: var(--text-color);
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+                transition: transform 0.3s ease, background-color 0.3s ease;
+                padding: 1rem; /* Add padding inside project cards */
+            }
+
+            .project-image {
+                position: relative; /* Keep it relative for absolute positioning of the overlay */
+            }
+
+            .project-image img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                border-radius: 8px;
+            }
+
+            /* Overlay on hover */
+            .project-overlay {
+                position: absolute; /* Keep it positioned absolutely */
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 100%; /* Set height to cover the image only */
+                background-color: rgba(156, 163, 175, 0.7); /* Light gray overlay */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                opacity: 0; /* Start hidden */
+                transition: opacity 0.3s ease;
+                pointer-events: none; /* Prevent interaction by default */
+            }
+
+            .project-card:hover .project-overlay {
+                opacity: 1; /* Show overlay on hover */
+                pointer-events: auto; /* Allow interaction when hovered */
+            }
+
+            .project-links {
+                z-index: 1; /* Ensure links are above the overlay */
+                display: flex; /* Aligns links horizontally */
+            }
+
+            .project-links a {
+                color: var(--text-color); /* Link color */
+                font-size: 1.5rem; /* Link size */
+                margin: 0 1rem; /* Space between links */
+            }
+            
+            /* Learn More button styling */
+            .learn-more-btn {
+                margin-top: 10px;
+                padding: 8px 12px;
+                background-color: var(--primary-color);
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                position: relative; /* Keep it relative to maintain stacking order */
+                z-index: 1; /* Ensure it appears above the overlay */
+            }
+
+            /* Details section */
+            .timeline-content {
+                margin-top: 10px;
+                display: none; /* Initially hidden */
+            }
+
+            .skills-used {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-bottom: 10px; /* Space between skills and Learn More button */
+            }
+
+            .skill-bubble {
+                background-color: var(--primary-color);
+                color: #fff;
+                padding: 5px 10px;
+                border-radius: 20px;
+                font-size: 0.9rem;
+            }
+
+            /* Horizontal Filter */
+            .project-categories {
+                display: flex; /* Aligns items in a row */
+                justify-content: center; /* Centers the filter items */
+                margin-bottom: 2rem; /* Space below the filter section */
+            }
+
+            .project-category {
+                background-color: var(--button-bg); /* Background color for filter */
+                color: var(--text-color); /* Text color */
+                padding: 0.5rem 1rem; /* Padding around text */
+                margin: 0 0.5rem; /* Margin between buttons */
+                border-radius: 5px; /* Rounded corners */
+                cursor: pointer; /* Pointer cursor on hover */
+                transition: background-color 0.3s ease; /* Smooth transition */
+            }
+
+            .project-category:hover {
+                background-color: var(--primary-color); /* Background color on hover */
+            }
+
+            /* Achievements Section */
+            #achievements {
+                padding: 4rem 2rem;
+                background-color: var(--bg-color);
+            }
+
+            .achievements-grid {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .achievement-item {
+                line-height: 1.6;
+                color: var(--text-color);
+                background-color: var(--section-bg);
+                padding: 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+            }
+
+            #achievements strong {
+                color: var(--primary-color);
+                font-size: 1.1rem;
+                display: block;
+                margin-bottom: 0.5rem;
+            }
+
+            #achievements em {
+                color: var(--secondary-color);
+                font-style: italic;
+                display: block;
+                margin-bottom: 1rem;
+            }
+
+            /* Achievements Image */
+            .achievement-image {
+                display: none;
+                margin: 1rem auto;
+                text-align: center;
+            }
+
+            .achievement-image img {
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
+            }
+
+            #achievements button {
+                background-color: var(--primary-color);
+                color: var(--text-color);
+                border: none;
+                padding: 0.75rem 1.5rem;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-top: 1rem;
+                transition: background-color 0.3s ease;
+                font-family: 'Oxanium', cursive;
+                border: 2px solid transparent;
+            }
+
+            #achievements button:hover {
+                background-color: var(--accent-color);
+                border-color: var(--text-color);
+            }
+
+            /* Responsive adjustments */
+            @media (max-width: 768px) {
+                .achievement-item {
+                    padding: 1rem;
+                }
+                
+                .achievement-image img {
+                    max-width: 100%;
+                }
+
+                .achievements-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .projects-grid {
+                    grid-template-columns: 1fr; /* Stack project cards on mobile */
+                }
+
+                .project-card {
+                    padding: 10px; /* Reduce padding for smaller screens */
+                }
+
+                .hero h1 {
+                    font-size: 2.5rem; /* Adjust font size for mobile */
+                }
+
+                .hero .profile-image {
+                    width: 150px;
+                    height: 150px; /* Smaller profile image for mobile */
+                }
+            }
+
+            /* Skills Section */
+            .skills-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 1rem;
+                padding: 0 1rem; /* Added padding */
+            }
+
+            .skill-category {
+                background-color: var(--section-bg);
+                padding: 1rem;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+            }
+
+            .skill-tag {
+                background-color: var(--bg-color);
+                padding: 0.5rem 1rem;
+                border-radius: 20px;
+                margin-right: 0.5rem;
+                margin-bottom: 0.5rem;
+                display: inline-block; /* Ensure tags are displayed properly */
+            }
+
+            /* Education Section */
+            #education {
+                padding: 0rem 2rem; /* Added padding for Education section */
+            }
+
+            .education-item {
+                margin-bottom: 2rem; /* Space between education entries */
+            }
+
+            .education-item h3 {
+                margin-bottom: 0.5rem; /* Space below education title */
+            }
+
+            /* Contact Section */
+            .contact-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+                padding: 0 2rem; /* Added padding */
+            }
+
+            .contact-item {
+                background-color: var(--section-bg);
+                padding: 2rem;
+                border-radius: 8px;
+                text-align: center;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+            }
+
+            /* Social Links */
+            .social-links {
+                display: flex;
+                justify-content: center; /* Centered social links */
+                margin-top: 1rem; /* Added margin for spacing */
+            }
+
+            .social-links a {
+                color: var(--text-color);
+                font-size: 1.5rem;
+                margin: 0 1rem;
+            }
+
+            /* Footer */
+            footer {
+                background-color: var(--section-bg);
+                color: var(--text-color);
+                text-align: center;
+                padding: 2rem;
+            }
+
+            /* Download Button */
+            .download-btn {
+                display: inline-block;
+                background-color: var(--primary-color);
+                color: var(--text-color);
+                padding: 0.75rem 1.5rem;
+                border-radius: 5px;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 2rem auto;
+                transition: background-color 0.3s ease;
+                border: 2px solid transparent; /* Added border */
+            }
+
+            .download-btn:hover {
+                background-color: var(--accent-color);
+                border-color: var(--text-color); /* Highlight border on hover */
+            }
+
+            /* Typing Effect */
+            .typing-effect {
+                display: inline;
+                border-right: 2px solid var(--primary-color);
+                animation: blink 0.7s step-end infinite;
+                font-size: 2rem; /* Increased font size */
+            }
+
+            @keyframes blink {
+                50% {
+                    border-color: transparent;
+                }
+            }
+
+            /* Recommendation Section */
+            #recommendations {
+                background-color: var(--bg-color);
+                color: var(--text-color);
+                padding: 4rem 0;
+                text-align: center;
+            }
+
+            #recommendations h2.section-title {
+                margin-bottom: 1rem; /* Adjust this to reduce spacing */
+            }
+
+            #recommendations .carousel-slide {
+                padding-top: 0rem; /* Reduce this value to decrease the space above the content */
+            }
+
+            .carousel {
+                position: relative;
+                max-width: 800px;
+                margin: 0 auto;
+                overflow: hidden;
+            }
+
+            .carousel-slide {
+                display: none;
+                padding: 2rem;
+                border-radius: 8px;
+                background-color: var(--section-bg);
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            }
+
+            .carousel-slide.active {
+                display: block;
+            }
+
+            .quote {
+                font-style: italic;
+                margin-bottom: 1.5rem;
+            }
+
+            /* Updated view-btn for lighter gray color */
+            .view-btn {
+                display: inline-block;
+                padding: 12px 24px;
+                background-color: #d3d3d3; /* Lighter gray color */
+                color: #000; /* Dark text for contrast */
+                font-weight: bold;
+                border-radius: 5px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                text-decoration: none;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+                transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .view-btn:hover {
+                background-color: #d3d3d3; /* Slightly darker gray on hover */
+                box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); /* Elevated shadow on hover */
+            }
+
+            .carousel-controls {
+                margin-top: 1rem;
+                text-align: center;
+            }
+
+            .carousel-controls span {
+                cursor: pointer;
+                padding: 10px;
+                background-color: var(--button-bg);
+                color: var(--text-color);
+                border-radius: 50%;
+                margin: 0 5px;
+                transition: background-color 0.3s;
+            }
+
+            .carousel-controls span:hover {
+                background-color: var(--primary-color);
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Header -->
+        <header>
+            <nav>
+                <a href="#home"><img src="Profile\logo.png" alt="Logo" class="logo"></a>
+                <div class="hamburger" onclick="toggleMenu()">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+                <ul id="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Me</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#achievements">Achievements</a></li>
+                    <li><a href="#recommendations">Recommendations</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-text">
+                <h1>Hi, I am<br>Aishwarya Bhargava</h1>
+                <div class="flashing-professions">
+                    <span class="typing-effect" id="typing-text"></span>
+                </div>
+            </div>
+            <img src="Profile\Profile Pic.jpg" alt="Aishwarya" class="profile-image">
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <p>Hi, I'm Aishwarya Bhargava, a passionate and driven technologist with a strong foundation in Robotic Process Automation (RPA), Artificial Intelligence (AI), and software development. With a Master of Science in Information Science from the University of Pittsburgh (graduating in May 2025), I have honed my skills through hands-on internships, co-ops, and research projects that focused on developing innovative automation solutions and AI-driven applications.</p>
+                <p>During my academic and professional journey, I've worked on automation projects that optimized enterprise operations, led teams to success in software development, and explored cutting-edge technologies. I love solving complex problems and thrive in dynamic, fast-paced environments where creativity and innovation are key.</p>
+                <p>In addition to my technical expertise, I actively contribute to the tech community through leadership roles, mentoring, and organizing events that foster knowledge exchange. I’m always excited to take on new challenges and collaborate with others to push the boundaries of what's possible in technology.</p>
+                <p>When I'm not coding or working on the next big idea, you can find me exploring my other passions like cooking, photography, traveling, or binge-watching the latest movies and series.</p>
+                <a href="https://drive.google.com/file/d/18TiaClI-0vYeAvkI7h94OPzCJ-n3sLvy/view?usp=sharing" class="download-btn" download>Download Resume</a>
+                <div class="social-links">
+                    <a href="https://drive.google.com/file/d/18TiaClI-0vYeAvkI7h94OPzCJ-n3sLvy/view?usp=sharing" target="_blank"><i class="fas fa-file-alt"></i></a>
+                    <a href="https://www.linkedin.com/in/aishwarya-bhargava05/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/AishwaryaBhargava" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://x.com/Aishwarya051198" target="_blank" aria-label="X" class="social-icon"><i class="fas fa-x"></i></a>
+                    <a href="mailto:aishwarya.bhargava1198@gmail.com" target="_blank" aria-label="Email" class="social-icon"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience">
+            <div class="container">
+                <h2 class="section-title">Professional Experience</h2>
+                <div class="timeline">
+                    <!-- Experience 1 -->
+                    <div class="timeline-item" onclick="toggleContent(this)">
+                        <div class="timeline-date">August 2024 - Present</div>
+                        <img src="Company_Logos\upitt-logo.png" alt="UPitt Logo" style="width: 200px; height: auto; vertical-align: middle;">
+                        <h3>Course Facilitator of Responsible Data Science (Online Masters in Data Science Program)</h3>
+                        <p>Company: University of Pittsburgh School of Computing and Information, Pittsburgh, PA, USA (On-Site)</p>
+                        <div class="timeline-content">
+                            <ul style="list-style-type: disc; padding-left: 20px;">
+                                <li>Ethical Instruction: Delivering comprehensive lessons to 150 students on responsible and ethical practices in Data Science, cultivating an environment of informed decision-making.</li>
+                                <li>Student Performance Management: Overseeing grading and feedback processes, consistently recognized for delivering fair, accurate, and constructive assessments that enhance student learning.</li>
+                            </ul>
+                            <p>Skills: Ethics, Data Science, Python</p>
+                        </div>
+                    </div>
+                    <!-- Experience 2 -->
+                    <div class="timeline-item" onclick="toggleContent(this)">
+                        <div class="timeline-date">April 2024 - Present</div>
+                        <img src="Company_Logos\upitt-logo.png" alt="UPitt Logo" style="width: 200px; height: auto; vertical-align: middle;">
+                        <h3>Vice President of School of Computing and Information Graduate Student Organization</h3>
+                        <p>Company: University of Pittsburgh School of Computing and Information, Pittsburgh, PA, USA (On-Site)</p>
+                        <div class="timeline-content">
+                            <ul style="list-style-type: disc; padding-left: 20px;">
+                                <li>Leadership and Advocacy: Actively serving as Vice President of the University of Pittsburgh School of Computing and Information's Graduate Student Organization (SCIGSO), leading initiatives to foster academic and professional growth among graduate students.</li>
+                                <li>Organizational Management: Spearheading efforts to organize events, workshops, and seminars that facilitate knowledge exchange and networking among students and professionals in the computing and information fields. My leadership ensures these events are both informative and aligned with the organization's mission.</li>
+                                <li>Community Engagement: Enhancing the sense of community within the School by promoting active participation among students in various academic and extracurricular activities. I work closely with faculty and administration to ensure student interests are represented and supported.</li>
+                            </ul>
+                            <p>Skills: Leadership, Team Management, Event Management</p>
+                        </div>
+                    </div>
+                    <!-- Experience 3 -->
+                    <div class="timeline-item" onclick="toggleContent(this)">
+                        <div class="timeline-date">December 2023 - Present</div>
+                        <img src="Company_Logos\upitt-logo.png" alt="UPitt Logo" style="width: 200px; height: auto; vertical-align: middle;">
+                        <h3>Center for Latin American Studies - Tech Assistant</h3>
+                        <p>Company: University of Pittsburgh, Pittsburgh, PA, USA (On-Site)</p>
+                        <div class="timeline-content">
+                            <ul style="list-style-type: disc; padding-left: 20px;">
+                                <li>Website Enhancement Initiative: Spearheading the revitalization of the CLAS website, implementing modern design and functionality improvements to significantly enhance user experience. Regularly receiving commendations for the project's impact on user engagement.</li>
+                                <li>Database Migration and Optimization: Leading the migration of critical databases to more advanced and efficient platforms, enhancing data accessibility and system reliability. This strategic upgrade is streamlining operations and improving service delivery.</li>
+                                <li>Ongoing Technical Support Excellence: Providing consistent and comprehensive technical support for CLAS operations, ensuring systems are optimized and functional. My efforts maintain high operational performance standards, contributing to the overall effectiveness of the department.</li>
+                            </ul>
+                            <p>Skills: HTML, CSS, Drupal 11</p>
+                        </div>
+                    </div>
+                    <!-- Experience 4 -->
+                    <div class="timeline-item" onclick="toggleContent(this)">
+                        <div class="timeline-date">June 2024 - August 2024</div>
+                        <img src="Company_Logos\c1-logo.jpg" alt="C1 Logo" style="width: 50px; height: auto; vertical-align: middle;">
+                        <h3>AI Intern</h3>
+                        <p>Company: C1, USA (Remote)</p>
+                        <div class="timeline-content">
+                            <ul style="list-style-type: disc; padding-left: 20px;">
+                                <li>Contributed to Ongoing Project: Played a pivotal role in the ongoing Loma Linda University Health project by developing and altering routes on DialogFlow CX, maintaining menu templates, tracking unity numbers, and performing UAT. Collaborated with clients to resolve issues, leading to over 50,000 successful calls and 120 appointment cancellations.</li>
+                                <li>AI Prompt and Bot Development: Developed a comprehensive database of over 500 prompts for various business verticals, which were transformed into fully functional Generative AI bots using the C1 Generative AI Designer. These bots, now in production, handle tasks such as translation, summarization, and research, significantly enhancing both client interactions and internal processes.</li>
+                                <li>Mega Prompts and Global AI Policy: Innovated by consolidating smaller prompts into mega prompts with diverse functionalities, expanding the scope of Generative AI applications. Additionally, created a document detailing global Generative AI policies to ensure compliance with international regulations, supporting global product expansion.</li>
+                                <li>Genesys Generative AI Cloud Research: Conducted in-depth research on Genesys Generative AI Cloud, compared its capabilities with our tools, and provided critical insights that guided our competitive strategy in the evolving AI market.</li>
+                                <li>C1 CONNECT Database and Front-End Development for C1 Evaluate: Created an Excel database of pages and site owners for the C1 CONNECT website, streamlining bot development and deployment. Also contributed to the front-end development of the LLM Evaluation tool prototype, enhancing our AI performance assessment capabilities.</li>
+                                <li>Generative AI Skill Set for Elly: Developed and converted a comprehensive skill set for Elly based on generated prompts into functioning bots, expanding Elly's capabilities across multiple verticals and improving its effectiveness in real-world applications.</li>
+                            </ul>
+                            <p>Skills: Prompt Engineering, Generative AI, Conversational AI, Dialogflow CX</p>
+                        </div>
+                    </div>
+                    <!-- Experience 5 -->
+                    <div class="timeline-item" onclick="toggleContent(this)">
+                        <div class="timeline-date">October 2023 - December 2023</div>
+                        <img src="Company_Logos\upitt-logo.png" alt="UPitt Logo" style="width: 200px; height: auto; vertical-align: middle;">
+                        <h3>Teaching Assistant - BUSBIS 0100</h3>
+                        <p>Company: University of Pittsburgh College of Business Administration, Pittsburgh, PA, USA (On-Site)</p>
+                        <div class="timeline-content">
+                            <ul style="list-style-type: disc; padding-left: 20px;">
+                                <li>Python Programming Instruction: Delivered engaging and clear Python programming lessons to a cohort of 500 students, focusing on clarity and practical application to ensure a comprehensive understanding of programming concepts.</li>
+                                <li>Student Performance Management: Oversaw the grading and feedback process for a large student body, maintaining high standards of fairness and consistency. Implemented effective feedback mechanisms that contributed to a supportive and positive learning environment, enhancing student satisfaction and academic performance.</li>
+                            </ul>
+                            <p>Skills: Microsoft Excel, Python</p>
+                        </div>
+                    </div>
+                    <!-- Experience 6 -->
+                    <div class="timeline-item" onclick="toggleContent(this)">
+                        <div class="timeline-date">December 2021 - July 2023</div>
+                        <img src="Company_Logos\allianz-logo.png" alt="Allianz Logo" style="width: 200px; height: auto; vertical-align: middle;">
+                        <h3>Assistant Manager - RPA (Robotic Process Automation)</h3>
+                        <p>Company: Allianz Partners, Noida, UP, India (On-Site)</p>
+                        <div class="timeline-content">
+                            <ul style="list-style-type: disc; padding-left: 20px;">
+                                <li>Leadership in Bot Stabilization and Optimization: Spearheaded the rapid stabilization and optimization of over 20 RPA bots across the APAC region and other territories, which were previously non-functional. Successfully restored these bots to operational status within two months, significantly enhancing workflow efficiency and regional productivity.</li>
+                                <li>Strategic Financial Automation Initiatives: Led the development and implementation of a crucial end-to-end automation script for extracting journal report inputs from SAP to Blackline, dramatically improving reporting cycles and reducing manpower requirements by 5-6 days per quarter. This project involved comprehensive SAP automation, macros, web automation, and desktop automation.</li>
+                                <li>Global HR Screening Automation: Orchestrated the design and global deployment of a new background check automation system using the CARA website. This strategic implementation streamlined the hiring process, saving approximately 2-3 hours daily and enhancing operational efficiency on a global scale.</li>
+                                <li>Innovative Invoice Processing Development: Developed and managed the launch of a cutting-edge invoice processing system for the Hyundai unit, which automated the extraction and processing of data from PDFs to SAP. This system effectively saved 6-7 manpower days per month, showcasing my ability to drive significant operational improvements.</li>
+                                <li>Financial Documentation Automation Leadership: Directed the creation and implementation of a comprehensive system for automating invoice generation and sales log updates using a master Excel sheet. This innovation reduced manual processing by 6-7 days monthly and improved accuracy in financial documentation.</li>
+                                <li>Recognized Excellence: Awarded the \"Champ of the Month\" twice for exceptional project delivery and leadership, reflecting my commitment to excellence and innovative problem-solving within the company.</li>
+                            </ul>
+                            <p>Skills: UiPath Tool, Robotic Process Automation (RPA), Leadership, Management</p>
+                        </div>
+                    </div>
+                    <!-- Experience 7 -->
+                    <div class="timeline-item" onclick="toggleContent(this)">
+                        <div class="timeline-date">August 2020 - November 2021</div>
+                        <img src="Company_Logos\utopia-logo.png" alt="Utopia Logo" style="width: 100px; height: auto; vertical-align: middle;">
+                        <h3>RPA Developer</h3>
+                        <p>Company: Utopia Global Inc. (Prometheus Group Company), Bengaluru, KA, India (On-Site)</p>
+                        <div class="timeline-content">
+                            <ul style="list-style-type: disc; padding-left: 20px;">
+                                <li>Enhanced File System Management: Led the development and deployment of end-to-end automation for extracting and downloading file names from folders on VPN links, markedly enhancing file management and accessibility, saving 10-12 manpower hours daily.</li>
+                                <li>Advanced Data Reporting Automation: Engineered and implemented a Data Health Assessment report generation system, integrating large data handling from download to report dissemination through AWS and Power BI, reducing process time by over 40% and enhancing report accuracy.</li>
+                                <li>CAD Conversion Process Efficiency: Created and deployed a comprehensive automation for converting CAD files to PDF, streamlining document processing for design teams, and reducing conversion times by 50%.</li>
+                                <li>HR Communication Automation: Developed automation for sending birthday notifications and contract expiration alerts within the HR department, which enhanced communication efficiency and saved 2-3 manpower hours daily.</li>
+                                <li>Project Management Optimization: Implemented a sophisticated automation for updating the Resource Utilization Plan (RUP) sheet for the PMO, improving the accuracy and timeliness of project resource planning and saving 2-3 manpower hours daily.</li>
+                                <li>Recognized Leadership and Excellence: Awarded SPOT of the Month in April 2021 and August 2020 for demonstrating outstanding self-drive and excellence in project completion, consistently delivering superior quality, and receiving high praise from the CEO and COO.</li>
+                                <li>Strategic Impact on Operational Efficiency: My suite of automated solutions across various departments significantly streamlined operations, collectively saving an average of 14-18 manpower hours daily across the company, showcasing the profound impact of my technical expertise and strategic vision.</li>
+                            </ul>
+                            <p>Skills: UiPath Tool, Robotic Process Automation (RPA)</p>
+                        </div>
+                    </div>
+                    <!-- Experience 8 -->
+                    <div class="timeline-item" onclick="toggleContent(this)">
+                        <div class="timeline-date">May 2020 - August 2020</div>
+                        <img src="Company_Logos\utopia-logo.png" alt="Utopia Logo" style="width: 100px; height: auto; vertical-align: middle;">
+                        <h3>Mentee - EAM (Enterprise Asset Management) Automation (RPA Developer)</h3>
+                        <p>Company: Utopia Global Inc. (Prometheus Group Company), Bengaluru, KA, India (On-Site)</p>
+                        <div class="timeline-content">
+                            <ul style="list-style-type: disc; padding-left: 20px;">
+                                <li>Optimized Invoice Management: Engineered and executed end-to-end automation that meticulously scraped relevant information from invoices and efficiently stored it in Excel for the Finance department. This innovative solution reduced manual labor significantly, saving the team 3-4 manpower hours each day.</li>
+                                <li>Transformed Recruitment Processes: Designed and deployed a sophisticated RPA solution that automated the talent sourcing process from LinkedIn, based on precise job descriptions from hiring managers. This system streamlined the search and shortlisting of candidates, drastically cutting down recruitment time by 2-3 manpower days per execution and enhancing the efficiency of the Talent Acquisition team.</li>
+                            </ul>
+                            <p>Skills: UiPath Tool, Robotic Process Automation (RPA)</p>
+                        </div>
+                    </div>
+                    <!-- Experience 9 -->
+                    <div class="timeline-item" onclick="toggleContent(this)">
+                        <div class="timeline-date">January 2020 - April 2020</div>
+                        <img src="Company_Logos\utopia-logo.png" alt="Utopia Logo" style="width: 100px; height: auto; vertical-align: middle;">
+                        <h3>Intern - EAM Automation</h3>
+                        <p>Company: Utopia Global Inc. (Prometheus Group Company), Bengaluru, KA, India (On-Site)</p>
+                        <div class="timeline-content">
+                            <ul style="list-style-type: disc; padding-left: 20px;">
+                                <li>Led RPA Strategic Implementation: Championed the initial adoption of Robotic Process Automation (RPA) by conducting an in-depth cost-benefit analysis using the UiPath Tool. Presented compelling findings to key stakeholders including the CEO, CTO, and COO, which catalyzed the organizational shift towards embracing RPA technologies.</li>
+                                <li>Pioneered Research and Deployment: Conducted extensive research on RPA functionalities and potential efficiencies, providing a foundational understanding that shaped the company's automation strategy. Effectively communicate these insights to senior management, ensuring alignment and informed decision-making.</li>
+                                <li>Enhanced Operational Efficiency: Engineered and successfully implemented a robust end-to-end automation solution for quality checks on essential files within the EAM department. This innovative solution optimized data processing workflows, reducing operational time by 2-3 days per execution and significantly increasing departmental productivity.</li>
+                            </ul>
+                            <p>Skills: UiPath Tool, Robotic Process Automation (RPA)</p>
+                        </div>
+                    </div>
+                    <!-- Experience 10 -->
+                    <div class="timeline-item" onclick="toggleContent(this)">
+                        <div class="timeline-date">June 2018 - July 2018</div>
+                        <img src="Company_Logos\lw-logo.jpg" alt="LW Logo" style="width: 100px; height: auto; vertical-align: middle;">
+                        <h3>Summer Internship and Industrial Training</h3>
+                        <p>Company: LinuxWorld Informatics Pvt. Ltd., Jaipur, RJ, India (On-Site)</p>
+                        <div class="timeline-content">
+                            <ul style="list-style-type: disc; padding-left: 20px;">
+                                <li>RedHat Linux Administration Expertise: Gained hands-on experience in RedHat Linux administration, enhancing system management and operational capabilities.</li>
+                                <li>Advanced Automation Skills with Ansible: Utilized Ansible for automation, mastering the use of ad-hoc commands and playbooks to streamline IT processes and improve deployment efficiency.</li>
+                                <li>Docker Container Implementation: Spearheaded the creation of various containers using Docker technology, facilitating scalable and efficient application deployment.</li>
+                                <li>Big Data Infrastructure Development: Built and managed HDFS and MapReduce clusters, conducting in-depth research on data packet transfers and analyzing data flows to optimize network and processing performance.</li>
+                                <li>Web Development with Python CGI: Developed dynamic web pages using Python CGI, applying practical coding skills to create interactive online content.</li>
+                                <li>Data Analysis and Machine Learning Exploration: Engaged in the analysis of datasets to understand linear regression, applying statistical methods to draw insights and enhance data-driven decision-making.</li>
+                            </ul>
+                            <p>Skills: Python, DevOps, Cloud Computing, Ansible, Machine Learning</p>
+                        </div>
+                    </div>
+                    <!-- Experience 11 -->
+                    <div class="timeline-item" onclick="toggleContent(this)">
+                        <div class="timeline-date">June 2017 - July 2017</div>
+                        <img src="Company_Logos\samyak-logo.jpg" alt="Samyak Logo" style="width: 100px; height: auto; vertical-align: middle;">
+                        <h3>Summer Trainee</h3>
+                        <p>Company: Samyak IT Solutions Pvt. Ltd., Jaipur, RJ, India (On-Site)</p>
+                        <div class="timeline-content">
+                            <ul style="list-style-type: disc; padding-left: 20px;">
+                                <li>Advanced Programming Skills Acquisition: Underwent intensive professional training in C and C++ programming, significantly enhancing my software development capabilities. Focused on mastering core and advanced programming techniques, laying a solid foundation for future technological pursuits and innovation in software engineering.</li>
+                            </ul>
+                            <p>Skills: C, C++</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-title">Projects</h2>
+                <!-- Horizontal Filter Section -->
+                <div class="project-categories">
+                    <div class="project-category" onclick="filterProjects('all')">All</div>
+                    <div class="project-category" onclick="filterProjects('machine-learning')">Machine Learning</div>
+                    <div class="project-category" onclick="filterProjects('websites')">Web Developments</div>
+                    <div class="project-category" onclick="filterProjects('rpa')">Robotic Process Automation</div>
+                    <div class="project-category" onclick="filterProjects('cloud-computing')">Cloud Computing</div>
+                </div>
+                <!-- Projects Grid -->
+                <div class="projects-grid">
+                    <!-- Project 1 -->
+                    <div class="project-card" data-category="cloud-computing">
+                        <div class="project-content">
+                            <h3>Hadoop Distributed Computing Environment with Docker Implementation</h3>
+                            <p>Duration: March 2024 - April 2024</p>
+                            <p>Architected and implemented a comprehensive Hadoop distributed computing environment using Docker containerization, featuring advanced MapReduce programs for data analysis. The solution provides a scalable, containerized framework for big data processing with applications in text analysis and log processing, making complex data analysis accessible and reproducible.</p>
+                            <div class="skills-used">
+                                <span class="skill-bubble">Python</span>
+                                <span class="skill-bubble">Hadoop</span>
+                                <span class="skill-bubble">Docker</span>
+                                <span class="skill-bubble">MapReduce</span>
+                                <span class="skill-bubble">HDFS</span>
+                                <span class="skill-bubble">YARN</span>
+                                <span class="skill-bubble">Shell Scripting</span>
+                                <span class="skill-bubble">BigData</span>
+                                <span class="skill-bubble">Distributed Systems</span>
+                            </div>
+                            <button class="learn-more-btn" onclick="toggleContent(this.closest('.project-card'))">Learn More</button>
+                            <button class="learn-more-btn" onclick="window.location.href='https://github.com/AishwaryaBhargava/Hadoop-Distributed-Computing-Environment-with-Docker-Implementation'">View Project</button>
+                            <div class="timeline-content" style="display: none;">
+                                <h4>Contributions:</h4>
+                                <ul>
+                                    <li>Docker Infrastructure Development: Engineered a containerized Hadoop environment with automated setup processes, reducing deployment time by enabling single-command initialization of the entire Hadoop ecosystem.</li>
+                                    <li>MapReduce Program Development: Created sophisticated MapReduce applications for n-gram frequency analysis and log file processing, enabling efficient analysis of large-scale text and log data.</li>
+                                    <li>System Architecture Design: Implemented a single-node Hadoop cluster with HDFS and YARN configurations, providing a foundation for scalable data processing and analysis.</li>
+                                    <li>Performance Optimization: Developed efficient MapReduce algorithms for processing large datasets, incorporating best practices in distributed computing and data handling.</li>
+                                    <li>Documentation and Accessibility: Created comprehensive documentation and setup instructions, enabling team members to quickly deploy and utilize the Hadoop environment for their analysis needs.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="project-card" data-category="cloud-computing">
+                        <div class="project-content">
+                            <h3>Blockchain-assisted Verifiable Cassandra</h3>
+                            <p>Duration: March 2024 - April 2024</p>
+                            <p>Developed an innovative proof-of-concept system integrating blockchain technology with distributed databases to ensure data integrity and verifiability in outsourced database services. The system combines Merkle Hash Trees with the Ethereum blockchain and Cassandra database to create a tamper-proof data storage and verification mechanism, enabling clients to verify the authenticity of queried data in real-time.</p>
+                            <div class="skills-used">
+                                <span class="skill-bubble">Python</span>
+                                <span class="skill-bubble">Cassandra</span>
+                                <span class="skill-bubble">Merkle Trees</span>
+                                <span class="skill-bubble">NoSQL</span>
+                                <span class="skill-bubble">Blockchain</span>
+                                <span class="skill-bubble">Distributed Systems</span>
+                                <span class="skill-bubble">Distributed Security</span>
+                                <span class="skill-bubble">Ethereum</span>
+                            </div>
+                            <button class="learn-more-btn" onclick="toggleContent(this.closest('.project-card'))">Learn More</button>
+                            <button class="learn-more-btn" onclick="window.location.href='https://github.com/AishwaryaBhargava/Blockchain-assisted-Verifiable-Cassandra'">View Project</button>
+                            <div class="timeline-content" style="display: none;">
+                                <h4>Contributions:</h4>
+                                <ul>
+                                    <li>Architecture Design: Engineered a comprehensive system architecture integrating Cassandra database, Ethereum blockchain, and Merkle Hash Trees, establishing a secure framework for data verification and integrity checking.</li>
+                                    <li>Blockchain Integration: Implemented smart contract functionality using Solidity and Web3.py to store and retrieve Merkle roots on the Ethereum blockchain, ensuring immutable and decentralized verification capabilities.</li>
+                                    <li>Database Implementation: Developed a robust database layer using Cassandra, creating a scalable and distributed storage solution for handling large-scale datasets with high availability.</li>
+                                    <li>Security Features: Designed and implemented a complete data verification system using Merkle Hash Trees, enabling clients to verify data authenticity through cryptographic proofs.</li>
+                                    <li>Attack Prevention: Created a comprehensive testing framework simulating malicious attacks, demonstrating the system's ability to detect and prevent unauthorized data modifications.</li>
+                                    <li>Client-Server Architecture: Built multiple client interfaces (Data Owner, Query Client, and Malicious Client) to showcase system interactions and security scenarios.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 3 -->
+                    <div class="project-card" data-category="websites">
+                        <div class="project-content">
+                            <h3>Center for Comparative Archaeology-DBMS</h3>
+                            <p>Duration: September 2023 - April 2024</p>
+                            <p>Developing a comprehensive Database Management System for the Center for Comparative Archaeology, enhancing collaborative and research capabilities globally. This platform simplifies access to archaeological data and supports the management and contribution of new research findings.</p>
+                            <div class="skills-used">
+                                <span class="skill-bubble">Python</span>
+                                <span class="skill-bubble">Flask</span>
+                                <span class="skill-bubble">HTML</span>
+                                <span class="skill-bubble">CSS</span>
+                                <span class="skill-bubble">MySQL</span>
+                            </div>
+                            <button class="learn-more-btn" onclick="toggleContent(this.closest('.project-card'))">Learn More</button>
+                            <button class="learn-more-btn" onclick="window.location.href='https://github.com/AishwaryaBhargava/Center-for-Comparative-Archaeology---DBMS'">View Project</button>
+                            <div class="timeline-content" style="display: none;">
+                                <h4>Contributions:</h4>
+                                <ul>
+                                    <li>System Architecture Design: Engineered a robust web-based system using Flask and MySQL, ensuring scalability and security for data handling and user interactions.</li>
+                                    <li>User Interface Development: Created an intuitive user interface with HTML, CSS, and JavaScript, improving user engagement and accessibility.</li>
+                                    <li>Advanced Data Interaction: Integrated functionalities allowing users to view, download, contribute, and manage archaeological datasets, facilitating global research collaborations.</li>
+                                    <li>Security and Performance Optimization: Implemented best practices in web security and database management to enhance system integrity and performance.</li>
+                                    <li>Community and Collaboration Tools: Features guest access for viewing and downloading datasets, registered user contributions, and a moderator dashboard for project and data oversight.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 4 -->
+                    <div class="project-card" data-category="machine-learning">
+                        <div class="project-content">
+                            <h3>Predictive Modeling for Paint Product Popularity and Properties</h3>
+                            <p>Duration: January 2024 - April 2024</p>
+                            <p>Developed sophisticated predictive models to analyze and forecast paint color popularity and physical properties, utilizing advanced machine learning techniques including Random Forest and Gradient Boosting Machines in R. This project achieved impressive predictive accuracy with an RMSE of 0.011 and an ROC AUC of 0.897.</p>
+                            <div class="skills-used">
+                                <span class="skill-bubble">R</span>
+                                <span class="skill-bubble">Machine Learning</span>
+                                <span class="skill-bubble">Random Forest</span>
+                                <span class="skill-bubble">Gradient Boosting Machines</span>
+                                <span class="skill-bubble">Logistic Regression</span>
+                                <span class="skill-bubble">Data Visualization</span>
+                            </div>
+                            <button class="learn-more-btn" onclick="toggleContent(this.closest('.project-card'))">Learn More</button>
+                            <div class="timeline-content" style="display: none;">
+                                <h4>Contributions:</h4>
+                                <ul>
+                                    <li>Model Development and Optimization: Constructed and fine-tuned predictive models that accurately forecasted market trends and consumer preferences, enabling data-driven decisions in product development.</li>
+                                    <li>Data Analysis and Insights Generation: Analyzed complex datasets to extract actionable insights, contributing to strategic planning and product innovation.</li>
+                                    <li>Outcome and Business Impact: The insights derived from the predictive models significantly accelerated product development cycles and reduced time to market, enhancing customer satisfaction and competitive advantage in the paint industry.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 5 -->
+                    <div class="project-card" data-category="machine-learning">
+                        <div class="project-content">
+                            <h3>End-to-End Invoice Processing</h3>
+                            <p>Duration: January 2022 - April 2022</p>
+                            <p>Developed a comprehensive RPA and AI-driven system to automate the entire invoice processing workflow from email receipt to data consolidation and client delivery. This system specifically targets ham emails within Gmail, automatically downloads attachments, and applies advanced data extraction techniques to process invoices efficiently. Achieved an exceptional accuracy rate of 99.8%, substantially reducing fraud risks and demonstrating significant cost efficiencies in financial operations.</p>
+                            <div class="skills-used">
+                                <span class="skill-bubble">Python</span>
+                                <span class="skill-bubble">UiPath Tool</span>
+                                <span class="skill-bubble">Machine Learning</span>
+                                <span class="skill-bubble">Robotic Process Automation (RPA)</span>
+                            </div>
+                            <button class="learn-more-btn" onclick="toggleContent(this.closest('.project-card'))">Learn More</button>
+                            <button class="learn-more-btn" onclick="window.location.href='https://github.com/AishwaryaBhargava/End-to-End-Invoice-Processing'">View Project</button>
+                            <div class="timeline-content" style="display: none;">
+                                <h4>Contributions:</h4>
+                                <ul>
+                                    <li>Automated Invoice Handling: Streamlined the extraction and processing of invoice data from emails, utilizing sophisticated machine learning algorithms and the UiPath automation tool to ensure high precision and efficiency.</li>
+                                    <li>Fraud Risk Reduction: Implemented robust verification processes that significantly mitigated fraud risks, enhancing the security and reliability of financial transactions.</li>
+                                    <li>Operational Efficiency: Optimized the end-to-end invoice handling process, which not only reduced manual labor by a significant margin but also accelerated the overall cycle time for financial operations.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 6 -->
+                    <div class="project-card" data-category="rpa">
+                        <div class="project-content">
+                            <h3>GRE University shortlisting and profile building course shortlisting</h3>
+                            <p>Duration: January 2022 - February 2022</p>
+                            <p>Developed a versatile RPA solution using UiPath to automate the process of university and course shortlisting for prospective students based on their academic profiles. This system initiates with a user-friendly form that collects essential details such as name, email, GRE scores, GPA, preferred countries, and courses. Depending on the user's selection, the bot either shortlists universities or identifies top courses from preferred educational websites, automating data extraction and compilation into Excel, followed by emailing the results directly to the user.</p>
+                            <div class="skills-used">
+                                <span class="skill-bubble">Robotic Process Automation (RPA)</span>
+                                <span class="skill-bubble">UiPath Tool</span>
+                            </div>
+                            <button class="learn-more-btn" onclick="toggleContent(this.closest('.project-card'))">Learn More</button>
+                            <button class="learn-more-btn" onclick="window.location.href='https://github.com/AishwaryaBhargava/GRE-University-and-profile-buildiing-course-shortlisting'">View Project</button>
+                            <div class="timeline-content" style="display: none;">
+                                <h4>Contributions:</h4>
+                                <ul>
+                                    <li>Interactive User Interface: Designed and implemented an interactive form-based UI that guides users through a personalized data collection process, enhancing user engagement and data accuracy.</li>
+                                    <li>Dynamic Web Scraping and Data Aggregation: Automated the scraping of university data and course information based on user preferences, employing advanced web scraping techniques to ensure accuracy and relevancy.</li>
+                                    <li>Customized Communication: Configured the bot to send detailed, customized reports to users via email, providing a seamless and informative experience that aids in their educational planning.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>                
+                    <!-- Project 7 -->
+                    <div class="project-card" data-category="rpa">
+                        <div class="project-content">
+                            <h3>Data extraction from Invoices</h3>
+                            <p>Duration: September 2020 - December 2020</p>
+                            <p>Developed a robust RPA solution using UiPath to automate the extraction of data and tables from various invoice PDFs received via Gmail. This system identifies relevant emails based on specific subjects, downloads the attachments, and employs advanced OCR technology and string manipulation techniques to accurately extract data. The extracted information is then systematically stored in designated Excel files for streamlined processing and analysis.</p>
+                            <div class="skills-used">
+                                <span class="skill-bubble">Robotic Process Automation (RPA)</span>
+                                <span class="skill-bubble">UiPath Tool</span>
+                            </div>
+                            <button class="learn-more-btn" onclick="toggleContent(this.closest('.project-card'))">Learn More</button>
+                            <button class="learn-more-btn" onclick="window.location.href='https://github.com/AishwaryaBhargava/Data-Scrapping-from-PDFs'">View Project</button>
+                            <div class="timeline-content" style="display: none;">
+                                <h4>Contributions:</h4>
+                                <ul>
+                                    <li>Automated Email Handling and PDF Retrieval: Configured the RPA system to automatically filter and download invoice attachments from incoming emails, enhancing document management efficiency.</li>
+                                    <li>Advanced Data Extraction Techniques: Leveraged OCR technology to extract textual data from PDFs with high accuracy, supplemented by sophisticated string manipulation methods to format and refine the data./li>
+                                    <li>Excel Data Organization: Programmed the bot to categorize and store extracted data into respective Excel spreadsheets, facilitating easy access and further data manipulation for financial analysis.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>                
+                    <!-- Project 8 -->
+                    <div class="project-card" data-category="rpa">
+                        <div class="project-content">
+                            <h3>Download and Segregate Files from GitHub</h3>
+                            <p>Duration: September 2020 - December 2020</p>
+                            <p>Developed an automated solution using UiPath to efficiently manage file downloads from GitHub repositories. The system navigates to specified GitHub URLs, downloads files, and employs advanced string manipulation techniques to organize these files into dynamically created folders based on file names. This process not only enhances file management but also optimizes retrieval and storage efficiency.</p>
+                            <div class="skills-used">
+                                <span class="skill-bubble">Robotic Process Automation (RPA)</span>
+                                <span class="skill-bubble">UiPath Tool</span>
+                            </div>
+                            <button class="learn-more-btn" onclick="toggleContent(this.closest('.project-card'))">Learn More</button>
+                            <button class="learn-more-btn" onclick="window.location.href='https://github.com/AishwaryaBhargava/Download-and-segregate-the-files-based-on-the-name-from-Github'">View Project</button>
+                            <div class="timeline-content" style="display: none;">
+                                <h4>Contributions:</h4>
+                                <ul>
+                                    <li>Automated File Downloading: Engineered a bot that automates the process of accessing GitHub, identifying relevant files, and managing downloads, significantly reducing manual intervention and potential human error.</li>
+                                    <li>Intelligent File Organization: Implemented complex string manipulation algorithms to parse file names and systematically categorize files into appropriately named folders, streamlining file organization and accessibility.</li>
+                                    <li>Enhanced Storage Solutions: Created a logical and user-friendly folder structure within the local storage system, facilitating quick access and efficient file management for ongoing and future projects.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>                
+                    <!-- Project 9 -->
+                    <div class="project-card" data-category="rpa">
+                        <div class="project-content">
+                            <h3>Scrape data from E-Commerce website</h3>
+                            <p>Duration: September 2020 - December 2020</p>
+                            <p>Developed an advanced RPA system using UiPath to autonomously navigate and extract product information from Amazon and Flipkart based on user-defined criteria. The automation process starts with a user interface that prompts for the device name and the choice of the e-commerce website. Depending on the selection, the bot executes a tailored script: it opens the corresponding website (Amazon or Flipkart), searches for the device, and scrapes essential details such as product names, URLs, and prices. This data is meticulously captured and organized into structured Excel spreadsheets, which are then uploaded to an orchestrator queue for further processing. This system not only streamlines the data extraction process but also ensures that the information is consistent, accurate, and readily available for analysis and decision-making.</p>
+                            <div class="skills-used">
+                                <span class="skill-bubble">Robotic Process Automation (RPA)</span>
+                                <span class="skill-bubble">UiPath Tool</span>
+                            </div>
+                            <button class="learn-more-btn" onclick="toggleContent(this.closest('.project-card'))">Learn More</button>
+                            <button class="learn-more-btn" onclick="window.location.href='https://github.com/AishwaryaBhargava/Scrape-data-from-e-commerce-website'">View Project</button>
+                            <div class="timeline-content" style="display: none;">
+                                <h4>Contributions:</h4>
+                                <ul>
+                                    <li>Enhanced Efficiency: Automated the time-intensive task of manually collecting product data, achieving over 80% efficiency improvement and significantly reducing human error.</li>
+                                    <li>Data Accuracy and Consistency: Provided high accuracy and consistency in data extraction, crucial for reliable price comparison and market trend analysis.</li>
+                                    <li>Scalable Design: Crafted the solution with scalability in mind, making it adaptable for additional e-commerce platforms to extend its utility and applicability.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>                
+                    <!-- Project 10 -->
+                    <div class="project-card" data-category="websites">
+                        <div class="project-content">
+                            <h3>Food Billing System</h3>
+                            <p>Duration: June 2019 - July 2019</p>
+                            <p>Developed a sophisticated graphical user interface (GUI) application for a comprehensive food billing system using Python and the Tkinter library. This intuitive system facilitates efficient order processing and billing management for a variety of food items, enhancing the ordering experience for users and streamlining backend operations for businesses. The system's cleanly designed GUI allows users to input their name, select food items from categories such as sweets, snacks, and pickles, adjust quantities, and view an automatically updated total cost. It features dynamic order processing capabilities that handle multiple item selections simultaneously, providing instant feedback on cost calculations. Upon completion of the selection process, the system generates a detailed receipt that includes the customer's name, date, list of items purchased, quantities, and the total cost. This receipt can be saved, printed, or sent to the customer via email, ensuring a smooth transaction from start to finish. Backend operations are robustly designed to manage data manipulation and calculation accurately, supporting the system's ability to provide reliable pricing and total aggregation. The application also includes functionalities for session data storage, allowing users to make adjustments before finalizing the bill.</p>
+                            <div class="skills-used">
+                                <span class="skill-bubble">Python</span>
+                            </div>
+                            <button class="learn-more-btn" onclick="toggleContent(this.closest('.project-card'))">Learn More</button>
+                            <button class="learn-more-btn" onclick="window.location.href='https://github.com/AishwaryaBhargava/food_billing_system'">View Project</button>
+                            <div class="timeline-content" style="display: none;">
+                                <h4>Contributions:</h4>
+                                <ul>
+                                    <li>Streamlined Billing Process: The system simplifies the ordering and billing process, significantly reducing manual calculation errors and enhancing operational efficiency.</li>
+                                    <li>Enhanced User Experience: Provides a responsive and user-friendly interface that improves interaction and customer satisfaction, making it ideal for busy food establishments.</li>
+                                    <li>Customizable and Scalable Solution: Built to be easily adaptable, the system supports various business sizes and types by accommodating different menu items and pricing structures, offering a scalable solution that can grow with the business.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>                
+                    <!-- Project 11 -->
+                    <div class="project-card" data-category="machine-learning">
+                        <div class="project-content">
+                            <h3>License Plate recognition and detection</h3>
+                            <p>Duration: January 2019 - April 2019</p>
+                            <p>Developed an advanced machine learning model to accurately identify and extract license plate numbers from vehicle images using the K-Nearest Neighbors (KNN) algorithm. This comprehensive system integrates Python with OpenCV and Numpy to enhance image processing for optimal character recognition. The process begins with capturing vehicle images, followed by sophisticated preprocessing to improve image clarity and contrast, preparing them for effective license plate detection. Utilizing advanced image processing techniques, the system isolates the license plate area and employs the KNN algorithm to accurately recognize and classify each character on the plate. This approach achieved an impressive F1 score of 92.56%, demonstrating high precision and reliability under various lighting conditions and angles, which is essential for real-world applications.</p>
+                            <div class="skills-used">
+                                <span class="skill-bubble">Python</span>
+                                <span class="skill-bubble">Machine Learning</span>
+                            </div>
+                            <button class="learn-more-btn" onclick="toggleContent(this.closest('.project-card'))">Learn More</button>
+                            <button class="learn-more-btn" onclick="window.location.href='https://github.com/AishwaryaBhargava/license-plate-recognition-and-detection'">View Project</button>
+                            <div class="timeline-content" style="display: none;">
+                                <h4>Contributions:</h4>
+                                <ul>
+                                    <li>Innovative Application of Machine Learning: Pioneered the use of machine learning for vehicle identification, setting new standards for security and surveillance systems.</li>
+                                    <li>Exceptional Accuracy and Reliability: Attained high accuracy in license plate recognition, crucial for law enforcement and traffic management implementations.</li>
+                                    <li>Integration of Advanced Technologies: Expertly integrated multiple advanced technologies to develop a seamless and efficient recognition system, showcasing significant technical proficiency.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>                
+                    <!-- Project 12 -->
+                    <div class="project-card" data-category="websites">
+                       <div class="project-content">
+                            <h3>Automation for setting-up different technologies</h3>
+                            <p>Duration: June 2018 - July 2018</p>
+                            <p>This project delivered a highly efficient automation solution that streamlines the deployment of complex technological stacks using Python and Ansible. The system facilitates rapid setup of diverse environments including Docker, Hadoop, and various cloud service models like CaaS, SaaS, PaaS, and STaaS. It simplifies the configuration of Hadoop's critical components such as job trackers and task trackers, integrates Docker for container management, and provides tools for configuring multiple layers of cloud services.</p>
+                            <div class="skills-used">
+                                <span class="skill-bubble">Python</span>
+                                <span class="skill-bubble">Ansible</span>
+                                <span class="skill-bubble">Cloud Computing</span>
+                            </div>
+                            <button class="learn-more-btn" onclick="toggleContent(this.closest('.project-card'))">Learn More</button>
+                            <button class="learn-more-btn" onclick="window.location.href='https://github.com/AishwaryaBhargava/automation-of-different-technologies'">View Project</button>
+                            <div class="timeline-content" style="display: none;">
+                                <h4>Contributions:</h4>
+                                <ul>
+                                    <li>Simplified Technology Deployment: Developed scripts and interfaces that significantly reduce the complexity and time required to configure and deploy multiple technology stacks, enhancing accessibility and usability.</li>
+                                    <li>Enhanced Operational Efficiency: By automating the initial setup processes for critical technology infrastructures, the system frees up resources and allows teams to focus on higher-value tasks, thus improving overall productivity and reducing setup errors.</li>
+                                    <li>Scalability and Flexibility: The solution supports a variety of configurations, making it adaptable for different organizational needs, from small businesses to large enterprises, and is particularly beneficial for educational and training purposes where multiple technologies are frequently tested and utilized.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>                
+                    <!-- Project 13 -->
+                    <div class="project-card" data-category="machine-learning">
+                        <div class="project-content">
+                            <h3>Face Recognition using Machine Learning</h3>
+                            <p>Duration: June 2018 - July 2018</p>
+                            <p>Developed an advanced face recognition system that utilizes machine learning to enhance security measures. This system employs Haar features-based Cascade classifiers to train a model on recognizing specific client faces. Once trained, it effectively uses real-time webcam data to authenticate users by matching their faces against the stored models. This technology was integrated into a security framework that controls access to a secure website, demonstrating its practical application in safeguarding digital assets.</p>
+                            <div class="skills-used">
+                                <span class="skill-bubble">Python</span>
+                                <span class="skill-bubble">Machine Learning</span>
+                                <span class="skill-bubble">OpenCV</span>
+                            </div>
+                            <button class="learn-more-btn" onclick="toggleContent(this.closest('.project-card'))">Learn More</button>
+                            <button class="learn-more-btn" onclick="window.location.href='https://github.com/AishwaryaBhargava/face-recognition'">View Project</button>
+                            <div class="timeline-content" style="display: none;">
+                                <h4>Contributions:</h4>
+                                <ul>
+                                    <li>Innovative Security Solution: Engineered a face recognition model that serves as a reliable and secure method for system authentication, reducing reliance on traditional passwords and enhancing user verification processes.</li>
+                                    <li>Real-Time Authentication: Implemented the model to recognize and verify users dynamically through webcam feeds, ensuring quick and efficient system access based on facial recognition.</li>
+                                    <li>Application in Digital Security: Successfully integrated the model into a website's security protocol, showcasing the potential to replace conventional security measures with biometric authentication across various platforms.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education">
+            <div class="container">
+                <h2 class="section-title">Education</h2>
+                <div class="education-item">
+                    <img src="Institute_Logos\upitt-logo.png" alt="Pitt Logo" style="width: 200px; height: auto; vertical-align: middle;">
+                    <h3>University of Pittsburgh, Pittsburgh, PA, United States of America</h3>
+                    <h4>Master of Science in Information Science</h4>
+                    <p>GPA: 3.857 | Expected: May 2025</p>
+                </div>
+                <div class="education-item">
+                    <img src="Institute_Logos\muj-logo.png" alt="XYZ University Logo" style="width: 200px; height: auto; vertical-align: middle;">
+                    <h3>Manipal University Jaipur, Jaipur, RJ, India</h3>
+                    <h4>Bachelor of Science in Computer Science</h4>
+                    <p>GPA: 3.0 | Graduated: May 2020</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="container">
+                <h2 class="section-title">Skills</h2>
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h3>Programming Languages</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag"><img src="Skills_Logos\python-logo.jpg" alt="Python Logo" style="width: 20px; height: auto;"> Python</span>
+                            <span class="skill-tag"><img src="Skills_Logos\jsts-logo.png" alt="JavaScript/TypeScript Logo" style="width: 20px; height: auto;"> JavaScript/TypeScript</span>
+                            <span class="skill-tag"><img src="Skills_Logos\c-logo.png" alt="C Logo" style="width: 20px; height: auto;"> C</span>
+                            <span class="skill-tag"><img src="Skills_Logos\r-logo.png" alt="R Logo" style="width: 20px; height: auto;"> R</span>
+                            <span class="skill-tag"><img src="Skills_Logos\html-logo.png" alt="HTML Logo" style="width: 20px; height: auto;"> HTML</span>
+                            <span class="skill-tag"><img src="Skills_Logos\css-logo.png" alt="CSS Logo" style="width: 20px; height: auto;"> CSS</span>
+                            <span class="skill-tag"><img src="Skills_Logos\mysql-logo.png" alt="MySQL Logo" style="width: 20px; height: auto;"> MySQL</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Cloud & AI Platforms</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag"><img src="Skills_Logos\googlecloud-logo.png" alt="Google Cloud Platforms Logo" style="width: 20px; height: auto;"> Google Cloud Platforms</span>
+                            <span class="skill-tag"><img src="Skills_Logos\openai-logo.jpg" alt="OpenAI Logo" style="width: 20px; height: auto;"> OpenAI</span>
+                            <span class="skill-tag"><img src="Skills_Logos\anthropic-logo.png" alt="Anthropic Claude Logo" style="width: 20px; height: auto;"> Anthropic Claude</span>
+                            <span class="skill-tag"><img src="Skills_Logos\gemini-logo.png" alt="Google AI (Gemini) Logo" style="width: 20px; height: auto;"> Google AI (Gemini)</span>
+                            <span class="skill-tag"><img src="Skills_Logos\microsoft-logo.png" alt="Microsoft AI Logo" style="width: 20px; height: auto;"> Microsoft AI</span>
+                            <span class="skill-tag"><img src="Skills_Logos\perplexity-logo.png" alt="Perplexity Logo" style="width: 20px; height: auto;"> Perplexity</span>
+                            <span class="skill-tag"><img src="Skills_Logos\huggingface-logo.png" alt="Hugging Face Logo" style="width: 20px; height: auto;"> Hugging Face</span>
+                            <span class="skill-tag"><img src="Skills_Logos\ollama-logo.png" alt="Ollama Logo" style="width: 20px; height: auto;"> Ollama</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Machine Learning & Artificial Intellgience</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag"><img src="Skills_Logos\scikit-logo.png" alt="SciKit-Learn Logo" style="width: 20px; height: auto;"> SciKit-Learn</span>
+                            <span class="skill-tag"><img src="Skills_Logos\opencv-logo.png" alt="OpenCV Logo" style="width: 20px; height: auto;"> OpenCV</span>
+                            <span class="skill-tag"><img src="Skills_Logos\neural-logo.jpg" alt="Neural Networks Logo" style="width: 20px; height: auto;"> Neural Networks</span>
+                            <span class="skill-tag"><img src="Skills_Logos\nlp-logo.png" alt="Natural Language Processing Logo" style="width: 20px; height: auto;"> Natural Language Processing</span>
+                            <span class="skill-tag"><img src="Skills_Logos\compvis-logo.jpg" alt="Computer Vision Logo" style="width: 20px; height: auto;"> Computer Vision</span>
+                            <span class="skill-tag"><img src="Skills_Logos\rpa-logo.png" alt="Robotic Process Automation Logo" style="width: 20px; height: auto;"> Robotic Process Automation</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Development Tools</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag"><img src="Skills_Logos\vs-logo.png" alt="VS Code Logo" style="width: 20px; height: auto;"> Visual Studio Code</span>
+                            <span class="skill-tag"><img src="Skills_Logos\intellij-logo.jpg" alt="IntelliJ IDEA Logo" style="width: 20px; height: auto;"> IntelliJ IDEA</span>
+                            <span class="skill-tag"><img src="Skills_Logos\pycharm-logo.jpg" alt="PyCharma Logo" style="width: 20px; height: auto;"> PyCharm</span>
+                            <span class="skill-tag"><img src="Skills_Logos\eclipse-logo.png" alt="Eclipse Logo" style="width: 20px; height: auto;"> Eclipse</span>
+                            <span class="skill-tag"><img src="Skills_Logos\git-logo.png" alt="Git Logo" style="width: 20px; height: auto;"> Git</span>
+                            <span class="skill-tag"><img src="Skills_Logos\github-logo.png" alt="GitHub Logo" style="width: 20px; height: auto;"> GitHub</span>
+                            <span class="skill-tag"><img src="Skills_Logos\jira-logo.png" alt="JIRA Logo" style="width: 20px; height: auto;"> JIRA</span>
+                            <span class="skill-tag"><img src="Skills_Logos\docker-logo.png" alt="Docker Logo" style="width: 20px; height: auto;"> Docker</span>
+                            <span class="skill-tag"><img src="Skills_Logos\ansible-logo.png" alt="Ansible Logo" style="width: 20px; height: auto;"> Ansible</span>
+                            <span class="skill-tag"><img src="Skills_Logos\uipath-logo.png" alt="UiPath Tool Logo" style="width: 20px; height: auto;"> UiPath Tool</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Web Development</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag"><img src="Skills_Logos\react-logo.png" alt="React Logo" style="width: 20px; height: auto;"> React</span>
+                            <span class="skill-tag"><img src="Skills_Logos\angular-logo.png" alt="Angular Logo" style="width: 20px; height: auto;"> Angular</span>
+                            <span class="skill-tag"><img src="Skills_Logos\bootstrap-logo.png" alt="Bootstrap Logo" style="width: 20px; height: auto;"> Bootstrap</span>
+                            <span class="skill-tag"><img src="Skills_Logos\tailwind-logo.png" alt="Tailwind CSS Logo" style="width: 20px; height: auto;"> Tailwind CSS</span>
+                            <span class="skill-tag"><img src="Skills_Logos\shadcn-logo.png" alt="Shadcn UI Logo" style="width: 20px; height: auto;"> Shadcn/UI</span>
+                            <span class="skill-tag"><img src="Skills_Logos\flask-logo.png" alt="Flask Logo" style="width: 20px; height: auto;"> Flask</span>
+                            <span class="skill-tag"><img src="Skills_Logos\nodejs-logo.png" alt="Node.JS Logo" style="width: 20px; height: auto;"> Node.JS</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Data Science & Analytics</h3>
+                        <div class="skill-list">
+                            <span class="skill-tag"><img src="Skills_Logos\pandas-logo.png" alt="Pandas Logo" style="width: 20px; height: auto;"> Pandas</span>
+                            <span class="skill-tag"><img src="Skills_Logos\numpy-logo.png" alt="NumPy Logo" style="width: 20px; height: auto;"> NumPy</span>
+                            <span class="skill-tag"><img src="Skills_Logos\scipy-logo.png" alt="SciPy Logo" style="width: 20px; height: auto;"> SciPy</span>
+                            <span class="skill-tag"><img src="Skills_Logos\matplotlib-logo.png" alt="Matplotlib Logo" style="width: 20px; height: auto;"> Matplotlib</span>
+                            <span class="skill-tag"><img src="Skills_Logos\seaborn-logo.png" alt="Seaborn Logo" style="width: 20px; height: auto;"> Seaborn</span>
+                            <span class="skill-tag"><img src="Skills_Logos\ggplot-logo.png" alt="GGPlot2 Logo" style="width: 20px; height: auto;"> GGPlot2</span>
+                            <span class="skill-tag"><img src="Skills_Logos\hadoop-logo.png" alt="Hadoop Logo" style="width: 20px; height: auto;"> Hadoop</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements">
+            <div class="container">
+                <h2 class="section-title">Achievements</h2>
+                <div class="achievements-grid">
+                    <!-- GHC 2024 Scholar -->
+                    <div class="achievement-item">
+                        <strong>GHC 2024 Scholar - University of Pittsburgh (School of Computing and Information)</strong>
+                        <em>September, 2024</em>
+                        <p>Selected as a scholar for the world's largest gathering of women technologists, recognizing academic excellence and leadership in computing. This prestigious scholarship provided full sponsorship for travel and accommodation to attend the week-long Grace Hopper Conference. As a recipient, I had the opportunity to network with leading technologists, attend cutting-edge technical sessions, and participate in career development workshops. This experience significantly enhanced my professional growth in the field of computing, exposing me to the latest trends and innovations in technology while connecting me with a diverse community of women in tech.</p>
+                    </div>
+
+                    <!-- "Be Bold" E-Card -->
+                    <div class="achievement-item">
+                        <strong>"Be Bold" E-Card - C1</strong>
+                        <em>July, 2024</em>
+                        <p>Recognized for outstanding contributions to the LLUH Elly project, demonstrating exceptional attention to detail, proficiency in error detection and fixing, and creativity in prompt creation work. My efforts had a substantial impact on the company, significantly improving the efficiency and effectiveness of the Elly system. This recognition underscores my ability to tackle complex technical challenges, deliver high-quality results, and drive innovation in a collaborative environment. The award highlights my commitment to excellence and my capacity to make meaningful contributions to critical projects.</p>
+                        <button onclick="toggleImage('be-bold-ecard')">View E-Card</button>
+                        <div id="be-bold-ecard" class="achievement-image">
+                            <img src="Achievements/be-bold-ecard.jpg" alt="Be Bold E-Card" style="width: 100%; max-width: 400px;"/>
+                        </div>
+                    </div>
+
+                    <!-- "Be Bold" Award -->
+                    <div class="achievement-item">
+                        <strong>"Be Bold" Award - C1</strong>
+                        <em>July, 2024</em>
+                        <p>Honored as a standout member of the AI Center of Excellence intern team for demonstrating exceptional hard work and dedication during the summer internship. This recognition reflects my ability to quickly adapt to new technologies, contribute meaningfully to cutting-edge AI projects, and collaborate effectively within a high-performing team. The "Be Bold" Award underscores my commitment to pushing boundaries and embracing innovative solutions in the field of artificial intelligence. It also highlights my capacity to make significant impacts in a short period, showcasing my potential as a future leader in AI and technology.</p>
+                        <button onclick="toggleImage('be-bold-award')">View Award</button>
+                        <div id="be-bold-award" class="achievement-image">
+                            <img src="Achievements/be-bold-award.jpg" alt="Be Bold Award" style="width: 100%; max-width: 400px;"/>
+                        </div>
+                    </div>
+
+                    <!-- "Be One" E-Card -->
+                    <div class="achievement-item">
+                        <strong>"Be One" E-Card - C1</strong>
+                        <em>June, 2024</em>
+                        <p>Acknowledged for playing a crucial role in expanding Elly's capabilities for Loma Linda University Health. I spearheaded the implementation of patient authentication features and successfully integrated Elly with Redox and Epic systems. These improvements significantly streamlined healthcare processes, enhanced data security, and improved overall patient care. This project showcased my ability to work with complex healthcare systems and deliver solutions that have a direct, positive impact on both healthcare providers and patients. The recognition highlights my technical expertise, project management skills, and ability to understand and address the unique challenges in healthcare technology integration.</p>
+                        <button onclick="toggleImage('be-one-ecard')">View E-Card</button>
+                        <div id="be-one-ecard" class="achievement-image">
+                            <img src="Achievements/be-one-ecard.jpg" alt="Be One E-Card" style="width: 100%; max-width: 400px;"/>
+                        </div>
+                    </div>
+
+                    <!-- CHAMP of the month (December 2022) -->
+                    <div class="achievement-item">
+                        <strong>CHAMP of the month - Allianz Partners (AWP)</strong>
+                        <em>December, 2022</em>
+                        <p>Awarded for exceptional performance in rapidly developing and deploying multiple bots within a compressed timeframe. By leveraging my expertise in automation and efficient coding practices, I delivered high-quality, functional bots that significantly improved operational efficiency. This achievement demonstrates my ability to work under pressure, manage multiple projects simultaneously, and deliver results that exceed expectations. The award underscores my technical proficiency, time management skills, and dedication to driving process improvements through innovative automation solutions.</p>
+                    </div>
+
+                    <!-- CHAMP of the month (June 2022) -->
+                    <div class="achievement-item">
+                        <strong>CHAMP of the month - Allianz Partners (AWP)</strong>
+                        <em>June, 2022</em>
+                        <p>Recognized for the dual achievement of revitalizing outdated, non-functional bots while simultaneously developing and deploying new ones. By applying my problem-solving skills and deep understanding of bot architecture, I breathed new life into legacy systems, making them operational and efficient. Additionally, I demonstrated my ability to multitask by concurrently delivering multiple new bots, showcasing my versatility and commitment to enhancing the company's automation capabilities. This award highlights my technical expertise, innovative approach to problem-solving, and ability to manage complex projects effectively.</p>
+                    </div>
+
+                    <!-- Research Publication -->
+                    <div class="achievement-item">
+                        <strong>Research Publication - International Journal of Scientific and Engineering Research</strong>
+                        <em>May, 2022</em>
+                        <p>Published a research paper titled "Invoice Processing using Robotic Process Automation (UiPath tool) and Artificial Intelligence" in the International Journal of Scientific and Engineering Research (IJSER, ISSN 2229-5518). This publication represents a significant contribution to the field of Robotic Process Automation and AI, exploring innovative approaches to invoice processing by leveraging the UiPath tool and artificial intelligence techniques. The research demonstrates my ability to bridge theoretical concepts with practical applications, offering insights that can revolutionize financial operations across industries. The publication process also honed my skills in academic writing, data analysis, and presenting complex technical concepts in an accessible manner, further establishing my expertise in the RPA and AI domains.</p>
+                        <button onclick="openPDF('Achievements/research_paper.pdf')">View Research Paper</button>
+                    </div>
+
+                    <!-- Guest Speaker at TEDP-RPA -->
+                    <div class="achievement-item">
+                        <strong>Guest Speaker at TEDP-RPA - Jaipur Engineering College and Research Centre (JECRC) University</strong>
+                        <em>June, 2021</em>
+                        <p>Invited as a guest speaker at the TEDP-RPA event to share my personal journey in Robotic Process Automation with a diverse audience of students and professionals. My presentation covered the evolution of RPA technology, its current advantages, and future scope in various industries. By relating my own experiences and insights, I inspired and educated attendees about the transformative potential of RPA. This speaking engagement not only showcased my expertise in the field but also demonstrated my ability to communicate complex technical concepts to a broad audience effectively. It highlighted my role as a thought leader in RPA and my commitment to sharing knowledge and fostering growth in the tech community.</p>
+                        <button onclick="toggleImage('tedp-rpa-speaker')">View Image</button>
+                        <div id="tedp-rpa-speaker" class="achievement-image">
+                            <img src="Achievements/tedp-rpa-speaker.jpg" alt="TEDP-RPA Speaker" style="width: 100%; max-width: 400px;"/>
+                        </div>
+                    </div>
+
+                    <!-- SPOT of the month (April 2021) -->
+                    <div class="achievement-item">
+                        <strong>SPOT of the month - Utopia Global Inc. (Prometheus Group Company)</strong>
+                        <em>April, 2021</em>
+                        <p>Awarded for outstanding performance in leading a team of 4 developers as the lead RPA Developer for a major project. By demonstrating self-drive and a commitment to excellence, I ensured that the project was completed on time and with superior quality. My leadership skills were instrumental in guiding the team through complex challenges, fostering collaboration, and maintaining high standards throughout the project lifecycle. This achievement underscores my ability to not only excel in technical aspects but also in project management and team leadership roles. The award recognizes my capacity to drive results, mentor team members, and deliver high-impact solutions in a corporate environment.</p>
+                        <button onclick="toggleImage('spot-april-2021')">View Award</button>
+                        <div id="spot-april-2021" class="achievement-image">
+                            <img src="Achievements/spot-april-2021.jpg" alt="SPOT Award April 2021" style="width: 100%; max-width: 400px;"/>
+                        </div>
+                    </div>
+
+                    <!-- SPOT of the month (August 2020) -->
+                    <div class="achievement-item">
+                        <strong>SPOT of the month - Utopia Global Inc. (Prometheus Group Company)</strong>
+                        <em>August, 2020</em>
+                        <p>Recognized for exceptional performance in developing two major projects within a remarkably short timeframe. The impact of these projects was substantial, resulting in savings of 12 man-power hours per day for the company. By leveraging my technical expertise and efficient project management skills, I delivered high-quality solutions that significantly improved operational efficiency. This achievement demonstrates my ability to handle complex projects under tight deadlines while maintaining a focus on creating tangible, measurable benefits for the organization. The award highlights my innovative problem-solving skills, technical proficiency, and commitment to driving business value through technology solutions.</p>
+                        <button onclick="toggleImage('spot-august-2020')">View Award</button>
+                        <div id="spot-august-2020" class="achievement-image">
+                            <img src="Achievements/spot-august-2020.jpg" alt="SPOT Award August 2020" style="width: 100%; max-width: 400px;"/>
+                        </div>
+                    </div>
+
+                    <!-- Rising Star -->
+                    <div class="achievement-item">
+                        <strong>Rising Star - Red Hat Inc. and LinuxWorld Informatics Pvt. Ltd.</strong>
+                        <em>February, 2019</em>
+                        <p>Earned the Rising Star award for successfully clearing the Red Hat EX407 exam in a single attempt, a testament to my expertise in Red Hat Ansible Automation. This challenging exam tests advanced skills in using Ansible for automation and configuration management. Successfully passing it on the first try demonstrates my deep understanding of Ansible principles, my ability to design and implement automation solutions, and my proficiency in troubleshooting complex automation scenarios. This achievement not only validates my technical skills but also positions me as a capable professional in the field of IT automation and DevOps practices. It underscores my commitment to continuous learning and mastery of cutting-edge technologies in the rapidly evolving field of IT infrastructure management.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recommendation Section -->
+        <section id="recommendations" style="padding: 4rem 0; background-color: var(--section-bg);">
+            <div class="container">
+                <h2 class="section-title">Letters of Recommendation</h2>
+                <div class="carousel" id="recommendationCarousel">
+                    <!-- Slide 1 -->
+                    <div class="carousel-slide active">
+                        <p class="quote">"Aishwarya demonstrated exceptional technical skills and a remarkable work ethic, contributing to key AI projects and delivering innovative solutions that advanced our team's goals. She consistently went above and beyond, showing immense potential in the field of artificial intelligence."</p>
+                        <p><strong>Terri Patrick</strong><br>Sr. Team Lead at AI Center of Excellence, C1</p>
+                        <a href="Recommendations/terri-patrick-recommendation.pdf" class="view-btn" target="_blank">View Full Recommendation</a>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="carousel-slide">
+                        <p class="quote">"Aishwarya showcased remarkable adaptability, quickly mastering complex technologies while making impactful contributions to multiple AI projects. Her technical expertise and passion for innovation made her an invaluable asset to our team."</p>
+                        <p><strong>Vijay Kammili</strong><br>Principal AI Architect at AI Center of Excellence, C1</p>
+                        <a href="Recommendations/vijay-kammili-recommendation.pdf" class="view-btn" target="_blank">View Full Recommendation</a>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="carousel-slide">
+                        <p class="quote">"Aishwarya consistently exceeded expectations, delivering impactful automation solutions and demonstrating exceptional leadership and technical skills. Her rapid mastery of complex technologies, dedication, and natural ability to inspire her team made her an invaluable asset to our department."</p>
+                        <p><strong>Neyaz Ahmad</strong><br>Senior Manager, Allianz Partners</p>
+                        <a href="Recommendations/neyaz-ahmad-recommendation.pdf" class="view-btn" target="_blank">View Full Recommendation</a>
+                    </div>
+                    <!-- Slide 4 -->
+                    <div class="carousel-slide">
+                        <p class="quote">"Aishwarya’s exceptional technical expertise, strong work ethic, and ability to lead complex automation projects made her an invaluable asset to our team. Her dedication to learning and delivering results sets her apart."</p>
+                        <p><strong>Panagiotis Theodotos</strong><br>Senior Manager, Allianz Partners</p>
+                        <a href="Recommendations/panagiotis-theodotos-recommendation.pdf" class="view-btn" target="_blank">View Full Recommendation</a>
+                    </div>
+                    <!-- Slide 5 -->
+                    <div class="carousel-slide">
+                        <p class="quote">"Aishwarya’s commitment to learning, technical expertise, and exceptional work ethic allowed her to migrate 20+ automations within one month, contributing significant value to the organization. Her ability to tackle complex challenges with minimal supervision is impressive."</p>
+                        <p><strong>Deepak Sharma</strong><br>Manager, Allianz Partners</p>
+                        <a href="Recommendations/deepak-sharma-recommendation.pdf" class="view-btn" target="_blank">View Full Recommendation</a>
+                    </div>
+                    <!-- Slide 6 -->
+                    <div class="carousel-slide">
+                        <p class="quote">"Aishwarya’s coding expertise and exceptional problem-solving abilities contributed significantly to the success of numerous projects at Allianz Partners. Her leadership skills, dedication, and collaborative spirit made her a valued asset, earning her the CHAMP of the Month award."</p>
+                        <p><strong>Anup Kumar Yadav</strong><br>Manager, Allianz Partners</p>
+                        <a href="Recommendations/anup-kumar-yadav-recommendation.pdf" class="view-btn" target="_blank">View Full Recommendation</a>
+                    </div>
+                    <!-- Slide 7 -->
+                    <div class="carousel-slide">
+                        <p class="quote">"Aishwarya's ability to master the learning curve rapidly, coupled with her exceptional coding skills, brought tremendous value to our company and clients. Her expertise in complex subjects like UiPath and Robotic Process Automation Technology is commendable, and her disciplined work ethic enabled her to execute projects with zero bugs and errors."</p>
+                        <p><strong>Tanmay Chakraborty</strong><br>Manager, Utopia Global Inc. (Prometheus Group Company)</p>
+                        <a href="Recommendations/tanmay-chakraborty-recommendation.pdf" class="view-btn" target="_blank">View Full Recommendation</a>
+                    </div>
+                    <!-- Slide 8 -->
+                    <div class="carousel-slide">
+                        <p class="quote">"Aishwarya demonstrated exceptional skill in building automations, consistently delivering complex projects from scratch with impressive independence. Her dedication and ability to work with minimal supervision made her a reliable and supportive teammate, bringing optimism and value to every project."</p>
+                        <p><strong>Deepak Chaudhary</strong><br>Manager, Utopia Global Inc. (Prometheus Group Company)</p>
+                        <a href="Recommendations/deepak-chaudhary-recommendation.pdf" class="view-btn" target="_blank">View Full Recommendation</a>
+                    </div>
+                    <!-- Slide 9 -->
+                    <div class="carousel-slide">
+                        <p class="quote">"Aishwarya’s combination of intellectual curiosity, practical knowledge, and leadership stood out in both her academic and research endeavors. Her ability to tackle complex challenges, such as coding machine learning models and leading projects, demonstrates her exceptional potential for future success."</p>
+                        <p><strong>Sandeep Chaurasia</strong><br>Professor and HoD of Computer Science and Engineering Department at School of Computing and Information Technology, Manipal University Jaipur</p>
+                        <a href="Recommendations/sandeep-chaurasia-recommendation.pdf" class="view-btn" target="_blank">View Full Recommendation</a>
+                    </div>
+                    <!-- Slide 10 -->
+                    <div class="carousel-slide">
+                        <p class="quote">"Aishwarya’s resourcefulness, originality, and strong interpersonal skills make her stand out as a dynamic and focused student. Her keen eye for detail and relentless pursuit of perfection have consistently made her a source of inspiration for both peers and professors."</p>
+                        <p><strong>Santosh Kumar Vishwakarma</strong><br>Associate Professor (Senior Scale) of Computer Science and Engineering Department at School of Computing and Information Technology, Manipal University Jaipur</p>
+                        <a href="Recommendations/santosh-kumar-vishwakarma-recommendation.pdf" class="view-btn" target="_blank">View Full Recommendation</a>
+                    </div>
+                </div>
+                <!-- Carousel Controls -->
+                <div class="carousel-controls">
+                    <span class="prev" onclick="moveSlide(-1)">&#10094;</span>
+                    <span class="next" onclick="moveSlide(1)">&#10095;</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">Contact Me</h2>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email</h3>
+                        <p>aishwarya.bhargava1198@gmail.com</p>
+                        <p>aib79@pitt.edu</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <h3>Phone</h3>
+                        <p>+1 (878) 834-9065</p>
+                        <p>+91 8764074858</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Location</h3>
+                        <p>Pittsburgh, PA, USA</p>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://drive.google.com/file/d/18TiaClI-0vYeAvkI7h94OPzCJ-n3sLvy/view?usp=sharing" target="_blank"><i class="fas fa-file-alt"></i></a>
+                    <a href="https://www.linkedin.com/in/aishwarya-bhargava05/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/AishwaryaBhargava" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://x.com/Aishwarya051198" target="_blank" aria-label="X" class="social-icon"><i class="fas fa-x"></i></a>
+                    <a href="mailto:aishwarya.bhargava1198@gmail.com" target="_blank" aria-label="Email" class="social-icon"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <p>&copy; 2024 Aishwarya. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <script>
+            function toggleMenu() {
+                var navLinks = document.getElementById("nav-links");
+                var hamburger = document.querySelector(".hamburger");
+
+                // Toggle the 'show' class to slide down the nav items
+                navLinks.classList.toggle("show");
+                hamburger.classList.toggle("toggle");
+            }
+
+            // Toggle function for timeline items and project cards
+            function toggleContent(item) {
+                // Check if item is a project card or a timeline item
+                const isProjectCard = item.classList.contains('project-card');
+                const content = isProjectCard 
+                    ? item.querySelector('.timeline-content')  // For project cards
+                    : item.querySelector('.timeline-content');  // For experience items (you already have this)
+
+                content.style.display = content.style.display === 'block' ? 'none' : 'block';
+            }
+
+            // Project Filter Functionality
+            function filterProjects(category) {
+                const projects = document.querySelectorAll('.project-card');
+
+                projects.forEach(project => {
+                    // Split the data-category string into an array of categories
+                    const categories = project.getAttribute('data-category').split(',').map(cat => cat.trim().toLowerCase());
+
+                    // Show all projects if "all" is selected
+                    if (category === 'all') {
+                        project.style.display = 'block';
+                    }
+                    // Check if any of the categories match the selected category
+                    else if (categories.includes(category.toLowerCase())) {
+                        project.style.display = 'block'; // Show the project
+                    } 
+                    // Hide the project if it doesn't match the selected category
+                    else {
+                        project.style.display = 'none'; // Hide the project
+                    }
+                });
+            }
+
+            // Typing effect for professions
+            const professions = ["RPA Developer", "Prompt Engineer","Software Developer", "AI Developer", "Data Scientist", "Data Analyst", "Software Engineer"];
+            let index = 0;
+            let charIndex = 0;
+            let currentText = '';
+            const typingSpeed = 100; // typing speed in milliseconds
+            const deletingSpeed = 50; // deleting speed in milliseconds
+            const pauseTime = 1000; // time to pause before starting to delete
+
+            function type() {
+                if (charIndex < professions[index].length) {
+                    currentText += professions[index].charAt(charIndex);
+                    document.getElementById('typing-text').innerText = currentText;
+                    charIndex++;
+                    setTimeout(type, typingSpeed);
+                } else {
+                    setTimeout(deleteText, pauseTime);
+                }
+            }
+
+            function deleteText() {
+                if (charIndex > 0) {
+                    currentText = currentText.slice(0, -1);
+                    document.getElementById('typing-text').innerText = currentText;
+                    charIndex--;
+                    setTimeout(deleteText, deletingSpeed);
+                } else {
+                    index = (index + 1) % professions.length;
+                    setTimeout(type, typingSpeed);
+                }
+            }
+
+            // Start the typing effect
+            type();
+
+            // Filter projects by category
+            function filterProjects(category) {
+                const projectCards = document.querySelectorAll('.project-card');
+                projectCards.forEach(card => {
+                    if (category === 'all' || card.getAttribute('data-category') === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            // Toggle achievement images
+            function toggleImage(imageId) {
+                const image = document.getElementById(imageId);
+                if (image) {
+                    image.style.display = image.style.display === 'block' ? 'none' : 'block';
+                }
+            }
+
+            // Open PDF in new tab (for research paper)
+            function openPDF(pdfPath) {
+                window.open(pdfPath, '_blank');
+            }
+
+            //recommendation section
+            let currentSlide = 0;
+            let slides = document.querySelectorAll('#recommendationCarousel .carousel-slide');
+            const slideInterval = 5000; // Interval of 5 seconds
+
+            function showSlide(n) {
+                slides[currentSlide].classList.remove('active'); // Remove active class from current slide
+                currentSlide = (n + slides.length) % slides.length; // Update currentSlide index
+                slides[currentSlide].classList.add('active'); // Add active class to the new slide
+            }
+
+            function moveSlide(n) {
+                showSlide(currentSlide + n); // Move to next or previous slide
+            }
+
+            // Auto-slide functionality
+            setInterval(() => {
+                moveSlide(1); // Move to the next slide every 5 seconds
+            }, slideInterval);
+
+            // CSS for the active class to show only one slide at a time
+            const style = document.createElement('style');
+            style.innerHTML = `
+                .carousel-slide { display: none; transition: opacity 1s; }
+                .carousel-slide.active { display: block; opacity: 1; }
+                .carousel-controls { text-align: center; margin-top: 20px; }
+                .carousel-controls .prev, .carousel-controls .next {
+                    cursor: pointer;
+                    padding: 10px;
+                    background-color: var(--primary-color);
+                    color: white;
+                    border-radius: 50%;
+                    font-size: 24px;
+                    display: inline-block;
+                }
+                .view-btn {
+                    background-color: var(--btn-bg-color);
+                    color: white;
+                    padding: 10px 20px;
+                    text-decoration: none;
+                    border-radius: 5px;
+                }
+                .view-btn:hover {
+                    background-color: var(--btn-hover-bg-color);
+                }
+            `;
+            document.head.appendChild(style);
+        </script>
+    </body>
+</html>
